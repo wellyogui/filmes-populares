@@ -1,4 +1,4 @@
-package br.well.coreapp
+package br.well.movies
 
 import org.junit.Test
 

@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/coreapp" />
             <option value="$PROJECT_DIR$/moviedbservice" />
+            <option value="$PROJECT_DIR$/movies" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
