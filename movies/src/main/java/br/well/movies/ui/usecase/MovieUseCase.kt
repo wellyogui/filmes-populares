@@ -9,7 +9,7 @@ import br.well.moviedbservice.api.movie.MovieDataSource
 class MovieUseCase(private val movieDataSource: MovieDataSource,
                    private val schedulerProvider: BaseSchedulerProvider) {
 
-    private val moviesLiveData = MutableLiveData<Resource<List<Movie>>>()
+    val moviesLiveData = MutableLiveData<Resource<List<Movie>>>()
 
     fun fetchPopularMovies(language: String, page: Int) {
         movieDataSource.movies(language, page)
