@@ -13,7 +13,7 @@ interface MoviesViewContract : ObservableViewContract<MoviesViewContract.Listene
     fun showLoading()
     fun bindMovies(movie: Movies)
     fun hideLoading()
-    fun showMessageError()
+    fun showMessageError(message: String, function: () -> Unit)
     fun showListLoad()
     fun hideListLoad()
 

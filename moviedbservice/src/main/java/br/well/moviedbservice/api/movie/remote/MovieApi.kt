@@ -1,6 +1,7 @@
 package br.well.moviedbservice.api.movie.remote
 
 import br.well.moviedbservice.api.MovieDbApi
+import br.well.moviedbservice.api.model.MovieDetail
 import br.well.moviedbservice.api.model.Movies
 import br.well.moviedbservice.api.movie.MovieDataSource
 import rx.Single
@@ -21,6 +22,13 @@ object MovieApi : MovieDataSource {
         ).doOnError {
             Timber.e(it, "movies: ${it.message}")
         }
+    }
+
+    override fun movieDetail(movieId: Int): Single<MovieDetail> {
+        return movieService.movieDetail(movieId, API_KEY, LANGUAGE)
+            .doOnError {
+                Timber.e(it, "movieDetail: ${it.message}")
+            }
     }
 
 }

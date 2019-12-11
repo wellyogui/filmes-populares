@@ -11,7 +11,8 @@ fun View.gone() {
     visibility = View.GONE
 }
 
-fun View.showSnackBar(message: String, duration: Int) {
+fun View.showSnackBar(message: String, duration: Int, actionText: String, actionAction: () -> Unit) {
     Snackbar.make(this, message, duration)
+        .setAction(actionText) { actionAction() }
         .show()
 }

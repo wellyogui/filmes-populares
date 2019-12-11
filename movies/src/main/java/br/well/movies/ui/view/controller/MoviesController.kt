@@ -52,7 +52,7 @@ class MoviesController(private val movieUseCase: MovieUseCase, private val lifec
                     viewContract.bindMovies(it.data!!)
                 }
                 ERROR -> {
-                    viewContract.showMessageError()
+                    viewContract.showMessageError(it.message!!, it.callback!!)
                 }
             }
         })

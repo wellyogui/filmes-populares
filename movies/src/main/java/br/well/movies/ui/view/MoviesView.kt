@@ -66,14 +66,14 @@ class MoviesView(inflater: LayoutInflater, parent: ViewGroup?) :
 
             })
         }
-        }
+    }
 
     override fun hideLoading() {
         rootView.loadingView.gone()
     }
 
-    override fun showMessageError() {
-        rootView.showSnackBar("Ocorreu um erro, tente novamente mais tarde.", Snackbar.LENGTH_SHORT)
+    override fun showMessageError(message: String, function: () -> Unit) {
+        rootView.showSnackBar(message, Snackbar.LENGTH_SHORT, "Tentar novamente", function)
     }
 
     override fun showListLoad() {
