@@ -1,2 +1,2 @@
-include ':app', ':moviedbservice', ':coreapp', ':movies'
+include ':app', ':moviedbservice', ':coreapp', ':movies', ':moviedetail'
 rootProject.name='Filmes Populares'
