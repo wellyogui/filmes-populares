@@ -5,9 +5,11 @@ import br.well.coreapp.util.ResourceState.*
 import br.well.coreapp.view.LiveController
 import br.well.movies.ui.usecase.MovieUseCase
 
-class MoviesController(private val movieUseCase: MovieUseCase, private val lifecycle: Lifecycle): LiveController<MoviesViewContract.Listener, MoviesViewContract>(),
+class MoviesController(private val movieUseCase: MovieUseCase, private val lifecycle: Lifecycle) :
+    LiveController<MoviesViewContract.Listener, MoviesViewContract>(),
     MoviesViewContract.Listener {
 
+    var currentPage: Int = 1
 
     override fun onCreate(view: MoviesViewContract) {
         super.onCreate(view)
@@ -15,26 +17,7 @@ class MoviesController(private val movieUseCase: MovieUseCase, private val lifec
     }
 
     fun onStart() {
-        movieUseCase.fetchPopularMovies("BR", 1)
-    }
-
-    override fun observeLive() {
-        movieUseCase.moviesLiveData.observe({lifecycle} , {
-            when(it.status) {
-                LOADING -> {
-                    when(it.loading) {
-                        true -> viewContract.showLoading()
-                        false -> viewContract.hideLoading()
-                    }
-                }
-                SUCCESS -> {
-                    viewContract.bindMovies()
-                }
-                ERROR -> {
-                    viewContract.showMessageError()
-                }
-            }
-        })
+        movieUseCase.fetchPopularMovies(1)
     }
 
     override fun initViews() {
@@ -46,8 +29,38 @@ class MoviesController(private val movieUseCase: MovieUseCase, private val lifec
     }
 
     override fun onResume() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        viewContract.registerListener(this)
     }
 
+    override fun observeLive() {
+        movieUseCase.moviesLiveData.observe({ lifecycle }, {
+            when (it.status) {
+                LOADING -> {
+                    if (currentPage == 1) {
+                        when (it.loading) {
+                            true -> viewContract.showLoading()
+                            false -> viewContract.hideLoading()
+                        }
+                    } else {
+                        when (it.loading) {
+                            true -> viewContract.showListLoad()
+                            false -> viewContract.hideListLoad()
+                        }
+                    }
+                }
+                SUCCESS -> {
+                    viewContract.bindMovies(it.data!!)
+                }
+                ERROR -> {
+                    viewContract.showMessageError()
+                }
+            }
+        })
+    }
+
+    override fun loadNextPage() {
+        currentPage += 1
+        movieUseCase.fetchPopularMovies(currentPage)
+    }
 
 }

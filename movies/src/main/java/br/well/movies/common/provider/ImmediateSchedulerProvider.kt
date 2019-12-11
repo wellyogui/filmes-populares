@@ -1,4 +1,4 @@
-package br.well.coreapp.provider
+package br.well.movies.common.provider
 
 import rx.Scheduler
 import rx.schedulers.Schedulers

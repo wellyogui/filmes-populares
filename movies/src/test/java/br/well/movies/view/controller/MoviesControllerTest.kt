@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
-import br.well.coreapp.provider.ImmediateSchedulerProvider
+import br.well.movies.common.provider.ImmediateSchedulerProvider
 import br.well.moviedbservice.api.movie.MovieDataSource
 import br.well.movies.ui.usecase.MovieUseCase
 import br.well.movies.ui.view.controller.MoviesController
@@ -43,7 +43,7 @@ class MoviesControllerTest {
     @Test
     fun onStart_fetchMovies_success() {
         //Arrange
-        `when`(movieDataSourceMock.movies("BR", 1)).thenReturn(Single.just(mock()))
+        `when`(movieDataSourceMock.movies(1)).thenReturn(Single.just(mock()))
         //Act
         SUT.onStart()
         //Assert
@@ -55,7 +55,7 @@ class MoviesControllerTest {
     @Test
     fun onStart_fetchMovies_failed() {
         //Arrange
-        `when`(movieDataSourceMock.movies("BR", 1)).thenReturn(Single.error(RuntimeException("")))
+        `when`(movieDataSourceMock.movies(1)).thenReturn(Single.error(RuntimeException("")))
         //Act
         SUT.onStart()
         //Assert

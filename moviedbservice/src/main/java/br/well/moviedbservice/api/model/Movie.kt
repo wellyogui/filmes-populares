@@ -1,5 +1,7 @@
 package br.well.moviedbservice.api.model
 
+data class Movies(val results: List<Movie>)
+
 data class Movie(
     val adult: Boolean,
     val backdrop_path: String,

@@ -1,6 +1,6 @@
 package br.well.moviedbservice.api.movie
 
-import br.well.moviedbservice.api.model.Movie
+import br.well.moviedbservice.api.model.Movies
 import rx.Single
 import timber.log.Timber
 
@@ -26,8 +26,8 @@ class MovieRepository(private val movieDataSource: MovieDataSource) : MovieDataS
         }
     }
 
-    override fun movies(language: String, page: Int): Single<List<Movie>> {
-        return movieDataSource.movies(language, page).doOnError {
+    override fun movies(page: Int): Single<Movies> {
+        return movieDataSource.movies(page).doOnError {
             Timber.e(it, "movies: ${it.message}")
         }
     }

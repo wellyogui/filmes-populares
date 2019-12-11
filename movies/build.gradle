@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
@@ -38,9 +40,6 @@ dependencies {
 
     // Material
     api "com.google.android.material:material:1.2.0-alpha02"
-
-    // Glide
-    api "com.github.bumptech.glide:glide:3.8.0"
 
     //Rx
     implementation "io.reactivex:rxandroid:1.2.1"

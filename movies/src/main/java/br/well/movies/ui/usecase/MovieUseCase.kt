@@ -1,18 +1,18 @@
 package br.well.movies.ui.usecase
 
 import androidx.lifecycle.MutableLiveData
-import br.well.coreapp.provider.BaseSchedulerProvider
 import br.well.coreapp.util.Resource
-import br.well.moviedbservice.api.model.Movie
+import br.well.moviedbservice.api.model.Movies
 import br.well.moviedbservice.api.movie.MovieDataSource
+import br.well.movies.common.provider.BaseSchedulerProvider
 
 class MovieUseCase(private val movieDataSource: MovieDataSource,
                    private val schedulerProvider: BaseSchedulerProvider) {
 
-    val moviesLiveData = MutableLiveData<Resource<List<Movie>>>()
+    val moviesLiveData = MutableLiveData<Resource<Movies>>()
 
-    fun fetchPopularMovies(language: String, page: Int) {
-        movieDataSource.movies(language, page)
+    fun fetchPopularMovies(page: Int) {
+        movieDataSource.movies(page)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .doOnSubscribe { moviesLiveData.value = Resource.loading(true) }
@@ -22,7 +22,7 @@ class MovieUseCase(private val movieDataSource: MovieDataSource,
                 }, {
                     moviesLiveData.value = Resource.loading(false)
                     moviesLiveData.value =
-                            Resource.error(it.message) { fetchPopularMovies(language, page) }
+                            Resource.error(it.message) { fetchPopularMovies(page) }
                 })
     }
 
