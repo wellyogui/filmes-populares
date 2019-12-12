@@ -1,4 +1,4 @@
-package br.well.movies.common.provider
+package br.well.coreapp
 
 interface FragmentLayoutProvider {
     fun fragmentFrame(): Int

@@ -23,6 +23,7 @@ android {
 
 dependencies {
     implementation project(path: ':movies')
+    implementation project(path: ':moviedetail')
     implementation project(path: ':moviedbservice')
     implementation project(path: ':coreapp')
 

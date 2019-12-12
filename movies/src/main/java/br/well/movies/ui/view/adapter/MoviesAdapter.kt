@@ -13,14 +13,14 @@ import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MoviesAdapter(
     private val items: ArrayList<MovieItemAdapter>,
-    private val listenere: Listener
+    private val listener: Listener
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var isLoadingAdded: Boolean = false
 
     interface Listener {
-        fun onMovieClicked(userName: String, repoName: String)
+        fun onMovieClicked(movieId: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -47,6 +47,9 @@ class MoviesAdapter(
             }
             is MovieViewHolder -> {
                 with(holder.itemView) {
+                    holder.itemView.movieCardViewGroup.setOnClickListener {
+                        listener.onMovieClicked(items[position].id)
+                    }
                 }
                 holder.bind(items[position])
             }

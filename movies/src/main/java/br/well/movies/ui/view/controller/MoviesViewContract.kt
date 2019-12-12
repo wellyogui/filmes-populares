@@ -7,7 +7,7 @@ import br.well.moviedbservice.api.model.Movies
 interface MoviesViewContract : ObservableViewContract<MoviesViewContract.Listener> {
     interface Listener : BaseListener {
         fun loadNextPage()
-
+        fun onMovieClicked(movieId: Int)
     }
 
     fun showLoading()

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import br.well.coreapp.ScreenNavigator
 import br.well.coreapp.view.RootViewContract
 
 abstract class BaseFragment<VIEW_CONTRACT : RootViewContract, CONTROLLER : BaseController<VIEW_CONTRACT>,
@@ -15,6 +16,15 @@ abstract class BaseFragment<VIEW_CONTRACT : RootViewContract, CONTROLLER : BaseC
 
     abstract val appProvider: APP_PROVIDER
     abstract val controllerFactory: CONTROLLER_FACTORY
+
+
+    val listener: ScreenNavigator by lazy {
+        if (activity is ScreenNavigator) {
+            return@lazy activity as ScreenNavigator
+        } else {
+            throw NotImplementedError("You must implement SaveUserUseCase.")
+        }
+    }
 
     open fun initData() {}
 

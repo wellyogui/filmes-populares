@@ -1,11 +1,12 @@
 package br.well.movies.ui.view.controller
 
 import androidx.lifecycle.Lifecycle
+import br.well.coreapp.ScreenNavigator
 import br.well.coreapp.util.ResourceState.*
 import br.well.coreapp.view.LiveController
 import br.well.movies.ui.usecase.MovieUseCase
 
-class MoviesController(private val movieUseCase: MovieUseCase, private val lifecycle: Lifecycle) :
+class MoviesController(private val movieUseCase: MovieUseCase, private val lifecycle: Lifecycle, private val screenNavigator: ScreenNavigator) :
     LiveController<MoviesViewContract.Listener, MoviesViewContract>(),
     MoviesViewContract.Listener {
 
@@ -61,6 +62,10 @@ class MoviesController(private val movieUseCase: MovieUseCase, private val lifec
     override fun loadNextPage() {
         currentPage += 1
         movieUseCase.fetchPopularMovies(currentPage)
+    }
+
+    override fun onMovieClicked(movieId: Int) {
+        screenNavigator.toMovieDetail(movieId)
     }
 
 }

@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import br.well.moviedbservice.api.model.MovieDetail
 import br.well.moviedbservice.api.movie.MovieDataSource
-import br.well.moviedetail.common.provider.ImmediateSchedulerProvider
+import br.well.coreapp.ImmediateSchedulerProvider
 import br.well.moviedetail.ui.view.controller.MovieDetailController
 import br.well.moviedetail.ui.view.controller.MovieDetailViewContract
 import br.well.moviedetail.ui.view.usecase.MovieDetailUseCase
@@ -37,7 +37,9 @@ class MovieControllerTest {
     fun setup() {
         val lifecycleMock = LifecycleRegistry(Mockito.mock(LifecycleOwner::class.java))
         lifecycleMock.handleLifecycleEvent(Lifecycle.Event.ON_START)
-        val useCase = MovieDetailUseCase(movieDataSourceMock, ImmediateSchedulerProvider())
+        val useCase = MovieDetailUseCase(movieDataSourceMock,
+            ImmediateSchedulerProvider()
+        )
         SUT = MovieDetailController(useCase, lifecycleMock, MOVIE_ID)
         SUT.onCreate(viewContractMock)
     }

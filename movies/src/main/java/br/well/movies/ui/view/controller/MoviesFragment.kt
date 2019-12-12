@@ -2,10 +2,10 @@ package br.well.movies.ui.view.controller
 
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import br.well.movies.common.provider.AppProvider
-import br.well.movies.common.provider.FragmentLayoutProvider
 import br.well.coreapp.view.base.BaseFragment
 import br.well.movies.common.factory.ControllerFactory
+import br.well.movies.common.provider.AppProvider
+import br.well.coreapp.FragmentLayoutProvider
 
 class MoviesFragment :
     BaseFragment<MoviesViewContract, MoviesController, AppProvider, ControllerFactory>() {
@@ -14,14 +14,14 @@ class MoviesFragment :
         appProvider.viewFactory.provideMovieView(view?.parent as ViewGroup?)
     }
     override val controller: MoviesController by lazy {
-        controllerFactory.provideMoviesController()
+        controllerFactory.provideMoviesController(listener)
     }
     override val appProvider: AppProvider by lazy {
         AppProvider((requireActivity() as AppCompatActivity),
             (requireActivity() as FragmentLayoutProvider).fragmentFrame())
     }
     override val controllerFactory: ControllerFactory by lazy {
-        ControllerFactory(appProvider.useCaseFactory, appProvider, this)
+        ControllerFactory(appProvider.useCaseFactory, this)
     }
 
     companion object {

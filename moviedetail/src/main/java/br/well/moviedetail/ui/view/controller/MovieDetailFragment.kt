@@ -3,10 +3,10 @@ package br.well.moviedetail.ui.view.controller
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import br.well.coreapp.FragmentLayoutProvider
 import br.well.coreapp.view.base.BaseFragment
 import br.well.moviedetail.common.factory.ControllerFactory
 import br.well.moviedetail.common.provider.AppProvider
-import br.well.moviedetail.common.provider.FragmentLayoutProvider
 import timber.log.Timber
 
 class MovieDetailFragment :
@@ -34,6 +34,7 @@ class MovieDetailFragment :
 
     companion object {
         const val EXTRA_MOVIE_ID = "EXTRA_MOVIE_ID"
+
         fun newInstance(movieId: Int) = MovieDetailFragment().run {
             arguments = Bundle().apply {
                 putInt(EXTRA_MOVIE_ID, movieId)

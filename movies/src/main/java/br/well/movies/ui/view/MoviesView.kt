@@ -35,7 +35,7 @@ class MoviesView(inflater: LayoutInflater, parent: ViewGroup?) :
 
         movie.results.forEach {
             val movieItemAdapter =
-                MovieItemAdapter(it.title, it.poster_path, it.vote_average, it.release_date)
+                MovieItemAdapter(it.id, it.title, it.poster_path, it.vote_average, it.release_date)
 
             moviesItemAdapter.add(movieItemAdapter)
         }
@@ -86,7 +86,9 @@ class MoviesView(inflater: LayoutInflater, parent: ViewGroup?) :
         moviesAdapter.hideLoading()
     }
 
-    override fun onMovieClicked(userName: String, repoName: String) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onMovieClicked(movieId: Int) {
+        listeners.forEach {
+            it.onMovieClicked(movieId)
+        }
     }
 }

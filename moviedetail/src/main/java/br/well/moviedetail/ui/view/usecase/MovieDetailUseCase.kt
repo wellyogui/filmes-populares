@@ -1,13 +1,14 @@
 package br.well.moviedetail.ui.view.usecase
 
 import androidx.lifecycle.MutableLiveData
+import br.well.coreapp.BaseSchedulerProvider
 import br.well.coreapp.util.Resource
 import br.well.moviedbservice.api.model.MovieDetail
 import br.well.moviedbservice.api.movie.MovieDataSource
-import br.well.moviedetail.common.provider.BaseSchedulerProvider
 
 class MovieDetailUseCase(private val movieDataSource: MovieDataSource,
-                         private val schedulerProvider: BaseSchedulerProvider) {
+                         private val schedulerProvider: BaseSchedulerProvider
+) {
 
     val movieDetailLive = MutableLiveData<Resource<MovieDetail>>()
 

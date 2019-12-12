@@ -1,6 +1,5 @@
-package br.well.moviedetail.common.provider
+package br.well.coreapp
 
-import br.well.moviedetail.common.provider.BaseSchedulerProvider
 import rx.Scheduler
 import rx.schedulers.Schedulers
 
