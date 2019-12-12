@@ -43,7 +43,7 @@ class MoviesControllerTest {
     @Before
     fun setup() {
         val lifecycleMock = LifecycleRegistry(Mockito.mock(LifecycleOwner::class.java))
-        lifecycleMock.handleLifecycleEvent(Lifecycle.Event.ON_START)
+        lifecycleMock.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
         val useCase = MovieUseCase(movieDataSourceMock, ImmediateSchedulerProvider())
         SUT = MoviesController(useCase, lifecycleMock, screenNavigator)
         SUT.onCreate(viewContractMock)

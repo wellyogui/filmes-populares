@@ -22,7 +22,7 @@ class MoviesController(private val movieUseCase: MovieUseCase, private val lifec
     }
 
     override fun initViews() {
-        observeLive()
+        // UNUSED
     }
 
     override fun onStop() {

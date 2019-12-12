@@ -49,7 +49,7 @@ class MovieDetailController(
     }
 
     override fun initViews() {
-        observeLive()
+        // UNUSED
     }
 
     override fun onBackPressed() {

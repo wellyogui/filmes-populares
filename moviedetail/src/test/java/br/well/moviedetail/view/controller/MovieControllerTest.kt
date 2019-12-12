@@ -27,6 +27,7 @@ class MovieControllerTest {
 
     companion object {
         const val MOVIE_ID = 512200
+        const val ERROR_MESSAGE = "Erro ao carregar a lista"
     }
 
     private val movieDataSourceMock = mock<MovieDataSource>()
@@ -64,12 +65,12 @@ class MovieControllerTest {
         //Arrange
         val captor = argumentCaptor<() -> Unit>()
         Mockito.`when`(movieDataSourceMock.movieDetail(MOVIE_ID))
-            .thenReturn(Single.error(RuntimeException("Houve um erro")))
+            .thenReturn(Single.error(RuntimeException(ERROR_MESSAGE)))
         //Act
         SUT.onStart()
         //Assert
         verify(viewContractMock).showLoading()
-        verify(viewContractMock).showErrorMessage("Houve um erro", captor.capture())
+        verify(viewContractMock).showErrorMessage(ERROR_MESSAGE, captor.capture())
         verify(viewContractMock).hideLoading()
     }
 
