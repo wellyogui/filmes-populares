@@ -3,7 +3,6 @@ package br.well.moviedetail.ui.view.controller
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import br.well.coreapp.FragmentLayoutProvider
 import br.well.coreapp.view.base.BaseFragment
 import br.well.moviedetail.common.factory.ControllerFactory
 import br.well.moviedetail.common.provider.AppProvider
@@ -18,18 +17,17 @@ class MovieDetailFragment :
         appProvider.viewFactory.provideMovieDetailView(view?.parent as ViewGroup?)
     }
     override val controller: MovieDetailController by lazy {
-        controllerFactory.provideMovieDetailController(movieId)
+        controllerFactory.provideMovieDetailController(movieId, listener)
     }
 
     override val appProvider: AppProvider by lazy {
         AppProvider(
-            (requireActivity() as AppCompatActivity),
-            (requireActivity() as FragmentLayoutProvider).fragmentFrame()
+            (requireActivity() as AppCompatActivity)
         )
     }
 
     override val controllerFactory: ControllerFactory by lazy {
-        ControllerFactory(appProvider.useCaseFactory, appProvider, this)
+        ControllerFactory(appProvider.useCaseFactory, this)
     }
 
     companion object {

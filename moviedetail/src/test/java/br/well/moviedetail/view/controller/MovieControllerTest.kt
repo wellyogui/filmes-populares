@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
+import br.well.coreapp.ImmediateSchedulerProvider
 import br.well.moviedbservice.api.model.MovieDetail
 import br.well.moviedbservice.api.movie.MovieDataSource
-import br.well.coreapp.ImmediateSchedulerProvider
 import br.well.moviedetail.ui.view.controller.MovieDetailController
 import br.well.moviedetail.ui.view.controller.MovieDetailViewContract
 import br.well.moviedetail.ui.view.usecase.MovieDetailUseCase
@@ -40,7 +40,7 @@ class MovieControllerTest {
         val useCase = MovieDetailUseCase(movieDataSourceMock,
             ImmediateSchedulerProvider()
         )
-        SUT = MovieDetailController(useCase, lifecycleMock, MOVIE_ID)
+        SUT = MovieDetailController(useCase, lifecycleMock, MOVIE_ID,)
         SUT.onCreate(viewContractMock)
     }
 

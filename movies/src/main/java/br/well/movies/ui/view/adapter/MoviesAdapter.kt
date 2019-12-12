@@ -90,7 +90,7 @@ class MoviesAdapter(
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: MovieItemAdapter) {
             with(itemView) {
-                movieImageView.loadImage(item.movieCover)
+                moviePosterView.loadImage(item.moviePoster)
                 movieNameView.text = item.movieName
                 movieRateView.text = item.movieRating.toString()
                 movieReleaseDateView.text = item.releaseDate.toHumanDate()

@@ -17,22 +17,25 @@ class MainActivity : AppCompatActivity(), FragmentLayoutProvider,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initApi()
-        openFragment(MoviesFragment.newInstance())
+        openFragment(MoviesFragment.newInstance(), false)
     }
 
     private fun initApi() {
         MovieDbApi.buildRetrofit()
     }
 
-    private fun openFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.mainRootView, fragment)
-            .commitNow()
+    private fun openFragment(fragment: Fragment, isBackStack: Boolean) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.mainRootView, fragment)
+            if (isBackStack) {
+                addToBackStack(fragment::class.java.simpleName)
+            }
+        }.commit()
     }
 
     override fun fragmentFrame(): Int = R.id.mainRootView
 
     override fun toMovieDetail(movieId: Int) {
-        openFragment(MovieDetailFragment.newInstance(movieId))
+        openFragment(MovieDetailFragment.newInstance(movieId),true)
     }
 }

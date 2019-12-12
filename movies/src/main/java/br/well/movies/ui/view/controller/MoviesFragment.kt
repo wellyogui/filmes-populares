@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import br.well.coreapp.view.base.BaseFragment
 import br.well.movies.common.factory.ControllerFactory
 import br.well.movies.common.provider.AppProvider
-import br.well.coreapp.FragmentLayoutProvider
 
 class MoviesFragment :
     BaseFragment<MoviesViewContract, MoviesController, AppProvider, ControllerFactory>() {
@@ -17,8 +16,7 @@ class MoviesFragment :
         controllerFactory.provideMoviesController(listener)
     }
     override val appProvider: AppProvider by lazy {
-        AppProvider((requireActivity() as AppCompatActivity),
-            (requireActivity() as FragmentLayoutProvider).fragmentFrame())
+        AppProvider((requireActivity() as AppCompatActivity))
     }
     override val controllerFactory: ControllerFactory by lazy {
         ControllerFactory(appProvider.useCaseFactory, this)

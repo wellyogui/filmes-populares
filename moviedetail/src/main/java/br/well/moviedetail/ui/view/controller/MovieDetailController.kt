@@ -1,6 +1,7 @@
 package br.well.moviedetail.ui.view.controller
 
 import androidx.lifecycle.Lifecycle
+import br.well.coreapp.ScreenNavigator
 import br.well.coreapp.util.ResourceState
 import br.well.coreapp.view.LiveController
 import br.well.moviedetail.ui.view.usecase.MovieDetailUseCase
@@ -8,8 +9,8 @@ import br.well.moviedetail.ui.view.usecase.MovieDetailUseCase
 class MovieDetailController(
     private val movieDetailUseCase: MovieDetailUseCase,
     private val lifecycle: Lifecycle,
-    private val movieId: Int
-) : LiveController<MovieDetailViewContract.Listener, MovieDetailViewContract>(), MovieDetailViewContract.Listener {
+    private val movieId: Int,
+    val listener: ScreenNavigator) : LiveController<MovieDetailViewContract.Listener, MovieDetailViewContract>(), MovieDetailViewContract.Listener {
 
 
     override fun onCreate(view: MovieDetailViewContract) {
@@ -52,4 +53,7 @@ class MovieDetailController(
         observeLive()
     }
 
+    override fun onBackPressed() {
+        viewContract.onBackPressed()
+    }
 }
