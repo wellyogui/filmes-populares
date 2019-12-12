@@ -53,13 +53,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:cardBackgroundColor="@color/colorPrimary"
         android:layout_marginTop="10dp"
+        android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintTop_toBottomOf="@+id/cardBannerView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/movieDetailViewGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             tools:visibility="visible">
 
             <ImageView

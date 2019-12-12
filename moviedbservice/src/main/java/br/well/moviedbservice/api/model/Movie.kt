@@ -1,20 +1,17 @@
 package br.well.moviedbservice.api.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Movies(val results: List<Movie>)
 
 data class Movie(
-    val adult: Boolean,
-    val backdrop_path: String,
-    val genre_ids: List<Int>,
     val id: Int,
-    val original_language: String,
-    val original_title: String,
-    val overview: String,
-    val popularity: Double,
-    val poster_path: String,
-    val release_date: String,
+    @SerializedName("poster_path")
+    val posterPath: String,
+    @SerializedName("release_date")
+    val releaseDate: String,
     val title: String,
     val video: Boolean,
-    val vote_average: Double,
-    val vote_count: Int
+    @SerializedName("vote_average")
+    val voteAverage: Double
 )

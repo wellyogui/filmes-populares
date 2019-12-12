@@ -37,7 +37,7 @@ class MoviesView(inflater: LayoutInflater, parent: ViewGroup?) :
 
         movie.results.forEach {
             val movieItemAdapter =
-                MovieItemAdapter(it.id, it.title, it.poster_path, it.vote_average, it.release_date)
+                MovieItemAdapter(it.id, it.title, it.posterPath, it.voteAverage, it.releaseDate)
 
             moviesItemAdapter.add(movieItemAdapter)
         }

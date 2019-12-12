@@ -26,20 +26,19 @@ class MovieDetailView(inflater: LayoutInflater, parent: ViewGroup?) :
         setupToolbar(movieDetail.title)
         with(rootView) {
             movieNameView.text = movieDetail.title
-            movieReleaseDateView.text = "Data de lançamento: ${movieDetail.release_date.toHumanDate()}"
+            movieReleaseDateView.text = "Data de lançamento: ${movieDetail.releaseDate.toHumanDate()}"
             val productionNames = arrayListOf<String>()
-            movieDetail.production_companies.forEach { productionNames.add(it.name) }
+            movieDetail.productionCompanies.forEach { productionNames.add(it.name) }
             movieProductionView.text = "Produção: ${productionNames.joinToString()}"
-            movieRatingView.text = "Avaliação: ${movieDetail.vote_average}"
-            movieBannerView.loadImage(movieDetail.backdrop_path)
-            moviePosterView.loadImage(movieDetail.poster_path)
+            movieRatingView.text = "Avaliação: ${movieDetail.voteAverage}"
+            movieBannerView.loadImage(movieDetail.backdropPath)
+            moviePosterView.loadImage(movieDetail.posterPath)
         }
     }
 
     override fun hideLoading() {
         with(rootView) {
-            movieDetailViewGroup.visible()
-            cardBannerView.visible()
+            movieInfoCardView.visible()
             loadingView.gone()
         }
     }
