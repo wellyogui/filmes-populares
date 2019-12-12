@@ -17,7 +17,7 @@ class MovieDetailFragment :
         appProvider.viewFactory.provideMovieDetailView(view?.parent as ViewGroup?)
     }
     override val controller: MovieDetailController by lazy {
-        controllerFactory.provideMovieDetailController(movieId, listener)
+        controllerFactory.provideMovieDetailController(movieId)
     }
 
     override val appProvider: AppProvider by lazy {

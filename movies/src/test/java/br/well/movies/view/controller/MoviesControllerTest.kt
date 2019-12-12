@@ -4,9 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
+import br.well.coreapp.ImmediateSchedulerProvider
+import br.well.coreapp.ScreenNavigator
 import br.well.moviedbservice.api.model.Movies
 import br.well.moviedbservice.api.movie.MovieDataSource
-import br.well.movies.common.provider.ImmediateSchedulerProvider
 import br.well.movies.ui.usecase.MovieUseCase
 import br.well.movies.ui.view.controller.MoviesController
 import br.well.movies.ui.view.controller.MoviesViewContract
@@ -35,6 +36,7 @@ class MoviesControllerTest {
 
     private val movieDataSourceMock = mock<MovieDataSource>()
     private val moviesMock = Movies(arrayListOf())
+    private val screenNavigator = mock<ScreenNavigator>()
 
     lateinit var SUT: MoviesController
 
@@ -43,7 +45,7 @@ class MoviesControllerTest {
         val lifecycleMock = LifecycleRegistry(Mockito.mock(LifecycleOwner::class.java))
         lifecycleMock.handleLifecycleEvent(Lifecycle.Event.ON_START)
         val useCase = MovieUseCase(movieDataSourceMock, ImmediateSchedulerProvider())
-        SUT = MoviesController(useCase, lifecycleMock)
+        SUT = MoviesController(useCase, lifecycleMock, screenNavigator)
         SUT.onCreate(viewContractMock)
     }
 
@@ -97,5 +99,14 @@ class MoviesControllerTest {
         verify(viewContractMock).showListLoad()
         verify(viewContractMock).showMessageError(ERROR_MESSAGE, captor.capture())
         verify(viewContractMock).hideListLoad()
+    }
+
+    @Test
+    fun onStop_unregisterListener() {
+        //Arrange
+        //Act
+        SUT.onStop()
+        //Assert
+        verify(viewContractMock).unregisterListener(SUT)
     }
 }
