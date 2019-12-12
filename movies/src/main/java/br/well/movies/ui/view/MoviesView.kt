@@ -2,6 +2,7 @@ package br.well.movies.ui.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import br.well.coreapp.ext.gone
 import br.well.coreapp.ext.showSnackBar
 import br.well.coreapp.ext.visible
@@ -14,6 +15,7 @@ import br.well.movies.ui.view.controller.MoviesViewContract
 import br.well.movies.ui.view.listener.PaginationScrolledListener
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_movies.view.*
+
 
 class MoviesView(inflater: LayoutInflater, parent: ViewGroup?) :
     ObservableView<MoviesViewContract.Listener>(inflater, parent, R.layout.fragment_movies)
@@ -43,6 +45,7 @@ class MoviesView(inflater: LayoutInflater, parent: ViewGroup?) :
         moviesAdapter.addAll(moviesItemAdapter)
         with(rootView.moviesView) {
             setHasFixedSize(true)
+            layoutManager = GridLayoutManager(activity, 2)
             if (adapter == null) {
                 adapter = moviesAdapter
             }
