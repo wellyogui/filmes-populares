@@ -30,7 +30,7 @@ class MovieDetailView(inflater: LayoutInflater, parent: ViewGroup?) :
             val productionNames = arrayListOf<String>()
             movieDetail.production_companies.forEach { productionNames.add(it.name) }
             movieProductionView.text = "Produção: ${productionNames.joinToString()}"
-            movieRatingView.text = movieDetail.vote_average.toString()
+            movieRatingView.text = "Avaliação: ${movieDetail.vote_average}"
             movieBannerView.loadImage(movieDetail.backdrop_path)
             moviePosterView.loadImage(movieDetail.poster_path)
         }

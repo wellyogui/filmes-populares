@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     app:layout_constraintVertical_chainStyle="packed">
 
     <Toolbar
@@ -58,8 +58,8 @@
 
         <ImageView
             android:id="@+id/moviePosterView"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="200dp"
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +71,7 @@
             android:id="@+id/movieNameView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingTop="12dp"
+            android:paddingTop="10dp"
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/movieReleaseDateView"
