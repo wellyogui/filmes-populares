@@ -43,6 +43,7 @@ class MoviesView(inflater: LayoutInflater, parent: ViewGroup?) :
         }
 
         moviesAdapter.addAll(moviesItemAdapter)
+
         with(rootView.moviesView) {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(activity, 2)
